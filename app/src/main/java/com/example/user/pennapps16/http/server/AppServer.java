@@ -7,10 +7,10 @@ import java.util.Map;
 /**
  * Created by prern_000 on 1/22/2016.
  */
-public class HttpServer extends NanoHTTPD {
+public class AppServer extends NanoHTTPD {
         private final static int PORT = 8080;
 
-        public HttpServer() throws  IOException {
+        public AppServer() throws  IOException {
             super(PORT);
             start();
             System.out.println( "\nRunning! Point your browers to http://localhost:8080/ \n" );
