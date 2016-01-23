@@ -9,6 +9,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.user.pennapps16.http.server.HttpServer;
+import fi.iki.elonen.util.ServerRunner;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        HttpServer server = null;
+        try {
+            server = new HttpServer();
+        } catch (IOException e){
+            System.out.println("Server Failed to Start!!");
+        }
+        //ServerRunner.run(HttpServer.class);
     }
 
     @Override
