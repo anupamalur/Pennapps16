@@ -41,6 +41,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.egl.EGLConfig;
 
+import fi.iki.elonen.util.ServerRunner;
+
 /**
  * A Cardboard sample application.
  */
@@ -180,7 +182,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
 
         AppServer httpServer = null;
         try {
-            httpServer = new AppServer();
+            httpServer = new AppServer(overlayView);
         } catch (IOException e) {
             e.printStackTrace();
         }

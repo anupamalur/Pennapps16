@@ -59,20 +59,22 @@ public class CardboardOverlayView extends LinearLayout {
     setColor(Color.rgb(150, 255, 180));
     setVisibility(View.VISIBLE);
 
-    textFadeAnimation = new AlphaAnimation(1.0f, 0.0f);
-    textFadeAnimation.setDuration(5000);
+    //textFadeAnimation = new AlphaAnimation(1.0f, 0.0f);
+    //textFadeAnimation.setDuration(1000);
   }
 
   public void show3DToast(String message) {
+    setTextAlpha(0f);
     setText(message);
     setTextAlpha(1f);
-    textFadeAnimation.setAnimationListener(new EndAnimationListener() {
+   /* textFadeAnimation.setAnimationListener(new EndAnimationListener() {
       @Override
       public void onAnimationEnd(Animation animation) {
         setTextAlpha(0f);
       }
     });
     startAnimation(textFadeAnimation);
+*/
   }
 
   private abstract class EndAnimationListener implements Animation.AnimationListener {
@@ -142,6 +144,21 @@ public class CardboardOverlayView extends LinearLayout {
     public void setOffset(float offset) {
       this.offset = offset;
     }
+
+    /*
+    public void show3DSplashImage() {
+      setImgSplash();
+    }*/
+
+    /*
+    private void setImgSplash() {
+      leftView.imageView.setLayoutParams(new LayoutParams(
+              LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+      leftView.imageView.setBackgroundResource(R.drawable.magnet);
+      rightView.imageView.setLayoutParams(new LayoutParams(
+              LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+      rightView.imageView.setBackgroundResource(R.drawable.magnet);
+    }*/
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
