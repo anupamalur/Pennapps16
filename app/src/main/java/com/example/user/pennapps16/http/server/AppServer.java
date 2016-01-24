@@ -16,6 +16,8 @@ public class AppServer extends NanoHTTPD {
         private final static int PORT = 8080;
         private CardboardOverlayView overlayView = null;
         private static final String MESSAGE = "message";
+        private static final String SLOW_DOWN = "Woaah! Please slow down";
+        private static final String BETTER = "Better";
         private String previousMessage = "";
 
         public AppServer(CardboardOverlayView overlayView) throws  IOException {
@@ -39,7 +41,16 @@ public class AppServer extends NanoHTTPD {
                 message = "";
             } else {
                 if (!previousMessage.equals(message)) {
+                    if (previousMessage.equals(SLOW_DOWN))
+                        message = "Better.";
                     overlayView.show3DToast(message);
+                    if ( message.equals(SLOW_DOWN) || message.equals(BETTER)){
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     previousMessage = message;
                 }
             }
