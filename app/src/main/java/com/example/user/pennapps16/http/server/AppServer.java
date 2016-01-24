@@ -42,7 +42,7 @@ public class AppServer extends NanoHTTPD {
             } else {
                 if (!previousMessage.equals(message)) {
                     if (previousMessage.equals(SLOW_DOWN))
-                        message = "Better.";
+                        message = "Better";
                     overlayView.show3DToast(message);
                     if ( message.equals(SLOW_DOWN) || message.equals(BETTER)){
                         try {
