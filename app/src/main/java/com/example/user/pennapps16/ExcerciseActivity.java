@@ -24,6 +24,8 @@ import android.opengl.Matrix;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
+
+import com.example.user.pennapps16.http.server.AppServer;
 import com.google.vrtoolkit.cardboard.*;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -236,6 +238,13 @@ public class ExcerciseActivity extends CardboardActivity implements CardboardVie
 //
         mOverlayView = (CardboardOverlayView) findViewById(R.id.overlay);
         mOverlayView.show3DToast("Press the button if you want to exit!");
+
+        AppServer httpServer = null;
+        try {
+            httpServer = new AppServer(mOverlayView);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
