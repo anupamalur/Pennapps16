@@ -16,8 +16,7 @@ public class AppServer extends NanoHTTPD {
         private final static int PORT = 8080;
         private CardboardOverlayView overlayView = null;
         private static final String MESSAGE = "message";
-        private int i=0;
-        public String message;
+        private String previousMessage = "";
 
         public AppServer(CardboardOverlayView overlayView) throws  IOException {
             super(PORT);
@@ -29,14 +28,21 @@ public class AppServer extends NanoHTTPD {
         @Override
         public Response serve(IHTTPSession session) {
             Map<String,String> params = session.getParms();
-            message = params.get(MESSAGE);
+            //System.out.println(params);
+            //for ( Map.Entry<String,String> pm : params.entrySet()){
+            //   System.out.print(pm.getKey() + "------>" + pm.getValue());
+            //}
+            String message = params.get(MESSAGE);
+            System.out.println("msg: " + message);
+            System.out.println("previousMessage: " + previousMessage);
             if ( message == null ) {
                 message = "";
             } else {
-                overlayView.show3DToast(message);
+                if (!previousMessage.equals(message)) {
+                    overlayView.show3DToast(message);
+                    previousMessage = message;
+                }
             }
-            System.out.println("msg: " + message);
-            i++;
-            return newFixedLengthResponse("<html><body>ABC" + i + "</body></html>");
+            return newFixedLengthResponse("<html><body>Result</body></html>");
         }
 }
